@@ -38,7 +38,7 @@ class WebhookResquest(BaseHTTPRequestHandler):
         repo_full_name = repository['repo_full_name']
         print(name, tag)
         cmd = 'kubectl apply -f ../k8s/deployment-uat-%s.yaml' % (str(name)[len("echo-"):])
-        # 这接
+        # patch image
         cmd = "kubectl patch statefulset %s -n cheese-uat --type='json' -p='[{\"op\": \"replace\", \"path\": \"/spec/template/spec/containers/0/image\", \"value\":\"%s\"}]'" % (
             name,
             resource_url)
