@@ -7,7 +7,7 @@ from http.server import HTTPServer, BaseHTTPRequestHandler
 
 class WebhookResquest(BaseHTTPRequestHandler):
     def do_POST(self):
-        if self.path == 'build/auto':
+        if self.path == '/build/auto':
             self.build_auto()
 
         self.send_response(200)
@@ -26,8 +26,8 @@ class WebhookResquest(BaseHTTPRequestHandler):
         name = repository['name']
         repo_full_name = repository['repo_full_name']
 
-
-
+        cmd='kubectl apply -f deployment-uat-%s'%(str(name)[:len("echo-")])
+        print(cmd)
 
         pass
 
